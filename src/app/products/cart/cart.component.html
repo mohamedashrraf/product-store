@@ -1,0 +1,60 @@
+<div class="container">
+  <!-- Check if item is truthy before displaying the cart -->
+  <button
+    class="btn btn-outline-danger rounded-pill"
+    *ngIf="!isCartEmpty"
+    (click)="clearCart()"
+  >
+    Clear
+  </button>
+
+  <h2 *ngIf="isCartEmpty" style="margin: auto; text-align: center">
+    cart is empty
+  </h2>
+
+  <div class="cart my-2">
+    <div
+      class="prodCart d-flex justify-content-evenly"
+      *ngFor="let item of cartProducts; let i = index"
+    >
+      <div class="prodImg m-5">
+        <img
+          src="{{ item.item.thumbnail }}"
+          alt="{{ item.item.title }}"
+          width="200"
+        />
+        <br />
+      </div>
+      <div class="quantity d-flex justify-content-evenly align-items-center">
+        <button class="btn btn-danger ms-3" (click)="increment(i)">+</button>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="item.quantity"
+          min="1"
+        />
+        <button class="btn btn-danger ms-3 me-5" (click)="decrement(i)">
+          -
+        </button>
+        <h5>{{ item.item.price * item.quantity }}</h5>
+      </div>
+      <div class="details m-3">
+        <h2>{{ item.item.title }}</h2>
+        <h4>
+          Price:
+          {{ item.item.price | currency : "EGP " : "symbol" : "1.0-2" }}
+        </h4>
+        <button
+          class="btn btn-outline-danger rounded-pill"
+          (click)="removeFromCart(item)"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+
+    <h5 class="text-secondary m-3 w-25 border-secondary" *ngIf="!isCartEmpty">
+      Total Price: {{ totalPrice | currency : "EGP " : "symbol" : "1.0-2" }}
+    </h5>
+  </div>
+</div>

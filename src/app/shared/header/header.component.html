@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg bg-light mb-5">
+  <div class="container">
+    <a
+      class="navbar-brand"
+      routerLink=""
+      routerLinkActive="text-primary"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >M Store</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+      <span class="nav-item mx-3">
+        <a
+          class="nav-link"
+          routerLink="login"
+          routerLinkActive="text-primary"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Login</a
+        >
+      </span>
+      <span class="nav-item mx-3">
+        <a
+          class="nav-link"
+          routerLink="register"
+          routerLinkActive="text-primary"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Register</a
+        >
+      </span>
+      <span class="nav-item mx-3">
+        <a
+          class="nav-link"
+          routerLink="cart"
+          routerLinkActive="text-primary"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ><i class="fa-solid fa-cart-shopping fa-xl"> </i
+        ></a>
+      </span>
+    </div>
+  </div>
+</nav>

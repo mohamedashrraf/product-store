@@ -1,0 +1,41 @@
+<div class="prodDetails my-4" *ngIf="foundProduct">
+  <div class="container d-flex justify-content-evenly">
+    <div class="prodImg m-5">
+      <img
+        src="{{ foundProduct.thumbnail }}"
+        alt="{{ foundProduct.title }}"
+        width="400"
+      />
+      <br />
+
+      <div class="smallImages mt-4">
+        <ng-container *ngFor="let image of foundProduct.images; let i = index">
+          <img src="{{ image }}" alt="{{ foundProduct.title }}" width="100" />
+        </ng-container>
+      </div>
+    </div>
+    <div class="details m-5">
+      <h2>{{ foundProduct.title }}</h2>
+      <h4>{{ foundProduct.description }}</h4>
+      <h2>
+        Price: {{ foundProduct.price | currency : "EGP " : "symbol" : "1.0-2" }}
+      </h2>
+      <h4>Rating: {{ foundProduct.rating }}</h4>
+      <br />
+      <span
+        class="mb-5"
+        [ngClass]="{
+          'in-stock': foundProduct.stock > 0,
+          'out-of-stock': foundProduct.stock === 0
+        }"
+      >
+        {{ foundProduct.stock > 0 ? "In stock" : "Out of stock" }}
+      </span>
+      <br /><br />
+      <button class="btn btn-outline-primary rounded-pill mx-3">Buy Now</button>
+      <button class="btn btn-outline-primary rounded-pill mx-3">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>

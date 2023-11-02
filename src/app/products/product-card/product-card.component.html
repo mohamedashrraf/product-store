@@ -1,0 +1,45 @@
+<div class="card m-3">
+  <span
+    [ngClass]="{
+      'in-stock': prodItem.stock > 0,
+      'out-of-stock': prodItem.stock === 0
+    }"
+  >
+    {{ prodItem.stock > 0 ? "In stock" : "Out of stock" }}
+  </span>
+  <img [src]="prodItem.thumbnail" class="card-img-top" alt="Card Image" />
+
+  <div class="card-body">
+    <h5 class="card-title">{{ prodItem.title }}</h5>
+    <p class="card-text">{{ prodItem.description }}</p>
+    <p class="card-text">
+      Price: {{ prodItem.price | currency : "EGP " : "symbol" : "1.0-2" }}
+    </p>
+    <p class="card-text">Rating: {{ prodItem.rating }}</p>
+    <br />
+    <button
+      class="btn btn-outline-primary rounded-pill me-4"
+      (click)="redirectToDetails(prodItem.id)"
+    >
+      Details
+    </button>
+    <div class="d-flex m-2" *ngIf="addButton">
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="quantity"
+        min="1"
+      />
+      <button class="btn btn-success" (click)="addToCart(); addButton = false">
+        Add
+      </button>
+    </div>
+    <button
+      class="btn btn-outline-primary rounded-pill"
+      *ngIf="!addButton"
+      (click)="addButton = true"
+    >
+      Add to Cart
+    </button>
+  </div>
+</div>
